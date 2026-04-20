@@ -1,0 +1,35 @@
+{
+  "name": "backend-fs12-ead",
+  "version": "1.0.0",
+  "description": "Backend usado para estudos sobre nodeJS",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gideaoferreira/backend-fs12-ead.git"
+  },
+  "keywords": [
+    "API",
+    "BACKEND",
+    "NODE",
+    "SERVER"
+  ],
+  "author": "Gideão Ferreira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gideaoferreira/backend-fs12-ead/issues"
+  },
+  "homepage": "https://github.com/gideaoferreira/backend-fs12-ead#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mysql2": "^3.22.1",
+    "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
