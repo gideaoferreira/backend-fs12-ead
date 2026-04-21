@@ -1,7 +1,7 @@
 function homeController(request, response) {
     return response
-            .status(201)
-            .json(`APP EM EXECUÇÃO EM CONTROLLER ESPECIFICA`)
+            .status(200)
+            .json(`PÁGINA INICIAL`)
 }
 
 export default homeController

@@ -1,7 +1,7 @@
 function userController(request, response) {
     return response
-            .status(201)
-            .json(`APP EM EXECUÇÃO EM CONTROLLER DE USUÁRIO`)
+            .status(200)
+            .json(listUser)
 }
 
 export default userController
