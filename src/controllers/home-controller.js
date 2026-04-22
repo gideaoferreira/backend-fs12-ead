@@ -1,8 +1,8 @@
-import { listUsers } from "../services/user-service.js"
+import { listUsersService } from "../services/user-service.js"
 
 function homeController(request, response) {
     try {
-        const users = listUsers()
+        const users = listUsersService()
         return response
                 .status(200)
                 .json(users)
