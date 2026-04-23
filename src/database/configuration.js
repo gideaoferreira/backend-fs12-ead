@@ -7,6 +7,7 @@ export const sequelize = new Sequelize(
     {
         port: 3306,
         host: "localhost",
-        dialect: "mysql"
+        dialect: "mysql",
+        logging: (...msg) => console.log(msg),
     }
 )

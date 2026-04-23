@@ -1,7 +1,16 @@
-function userController(request, response) {
-    return response
-            .status(200)
-            .json(listUser)
+import { listUsersService } from "../services/user-service.js"
+
+async function userController(request, response) {
+    try {
+        const users = await listUsersService()
+        return response
+                .status(200)
+                .json(users)
+    } catch (error) {
+        return response
+            .status(500)
+            .json(error.message)
+    }
 }
 
 export default userController

@@ -11,7 +11,8 @@ app.use(express.json())
 app.use(routes)
 
 sequelize.authenticate()
-    .then(() => {
+    .then(async () => {
+        await sequelize.sync()
         app.listen(port, (error) => {
             if (error) {
                 console.log("Ops! Tivemos um erro ao iniciar o servidor")

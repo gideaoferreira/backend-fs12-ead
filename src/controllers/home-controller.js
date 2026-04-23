@@ -1,8 +1,8 @@
 import { listUsersService } from "../services/user-service.js"
 
-function homeController(request, response) {
+async function homeController(request, response) {
     try {
-        const users = listUsersService()
+        const users = await listUsersService()
         return response
                 .status(200)
                 .json(users)
