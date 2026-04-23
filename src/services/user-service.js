@@ -1,9 +1,9 @@
 import { listUsersRepository } from "../repositories/user-repository.js"
 
-export function listUsersService() {
+export async function listUsersService() {
     try {
-        return listUsersRepository()
+        return await listUsersRepository()
     } catch (error) {
-        throw new Error("Erro ao listar os usuarios")
+        throw new Error(`Erro ao listar os usuarios: ${error.message}`)
     }
 }
