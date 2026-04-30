@@ -8,6 +8,9 @@ const routes = Router()
 routes.get("/", homeController)
 routes.get("/users", listUserController)
 routes.post("/users", createUserController)
-routes.get("/products", productController)
+routes.get("/products", productController().list)
+routes.post("/products", productController().create)
+routes.delete("/products/:id", productController().delete)
+routes.put("/products/:id", productController().update)
 
 export default routes

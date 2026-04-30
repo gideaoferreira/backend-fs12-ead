@@ -30,6 +30,7 @@
     "sequelize": "^6.37.8"
   },
   "devDependencies": {
+    "morgan": "^1.10.1",
     "nodemon": "^3.1.14"
   }
 }
