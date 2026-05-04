@@ -1,13 +1,15 @@
 import { Router } from "express"
 import homeController from "../controllers/home-controller.js"
-import { createUserController, listUserController } from "../controllers/user-controller.js"
+import userController from "../controllers/user-controller.js"
 import productController from "../controllers/product-controller.js"
 
 const routes = Router()
 
-routes.get("/", homeController)
-routes.get("/users", listUserController)
-routes.post("/users", createUserController)
+// Rotas da feature de usuário
+routes.get("/users", userController().list)
+routes.post("/user", userController().create)
+
+//  Rotas da feature de produtos
 routes.get("/products", productController().list)
 routes.post("/products", productController().create)
 routes.delete("/products/:id", productController().delete)

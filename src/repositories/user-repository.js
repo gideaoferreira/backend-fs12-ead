@@ -1,11 +1,22 @@
 import { User } from "../models/user.js"
 
-export async function listUsersRepository() {
-    const users = await User.findAll()
-    return users
+function userRepository() {
+  return {
+    list: async () => {
+      return await User.findAll()
+    },
+    create: async (data) => {
+      const user = await User.create({
+        name: data.name,
+        lastName: data.lastName,
+        email: data.email,
+        birthDate: data.birthDate,
+        gender: data.gender
+      })
+
+      return user
+    }
+  }
 }
 
-export async function createUserRepository(data) {
-    const user = await User.create(data)
-    return user
-}
+export default userRepository

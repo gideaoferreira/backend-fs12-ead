@@ -1,26 +1,26 @@
-import { createUserService, listUsersService } from "../services/user-service.js"
+import userService from "../services/user-service.js"
 
-export async function listUserController(request, response) {
-    try {
-        const users = await listUsersService()
-        return response
-                .status(200)
-                .json(users)
-    } catch (error) {
-        return response
-            .status(500)
-            .json(error.message)
-    }
-}
-
-export async function createUserController(request, response) {
-    try {
-        const body = request.body
-        const user = createUserService(body)
-        return response
-                .status(201)
-                .json(user)
-    } catch (error) {
+function userController() {
+  return {
+    list: async (request, response) => {
+      try {
+        const service = userService()
+        const listUsers = await service.list()
+        return response.status(200).json(listUsers)
+      } catch (error) {
         return response.status(500).json(error.message)
+      }
+    },
+    create: async (request, response) => {
+      try {
+          const service = userService()
+          const user = await service.create(request.body)
+          return response.status(201).json(user)
+      } catch (error) {
+        return response.status(500).json(error.message)
+      }
     }
+  }
 }
+
+export default userController

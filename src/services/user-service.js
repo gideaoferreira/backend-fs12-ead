@@ -1,17 +1,25 @@
-import { createUserRepository, listUsersRepository } from "../repositories/user-repository.js"
+import { response } from "express"
+import userRepository from "../repositories/user-repository.js"
 
-export async function listUsersService() {
-    try {
-        return await listUsersRepository()
-    } catch (error) {
-        throw new Error(`Erro ao listar os usuarios: ${error.message}`)
+function userService() {
+  return {
+    list: async () => {
+      try {
+        const repository = userRepository()
+        return await repository.list()
+      } catch (error) {
+        throw new Error("Não foi possível listar os usuários")
+      }
+    },
+    create: async (data) => {
+      try {
+        const repository = userRepository()
+        return await repository.create(data)
+      } catch (error) {
+        throw new Error("Não foi possível criar o usuário")
+      }
     }
+  }
 }
 
-export async function createUserService(data) {
-    try {
-        return await createUserRepository(data)
-    } catch (error) {
-        throw new Error(`Não foi possível criar o usuário: ${data}`)
-    }
-}
+export default userService
