@@ -19,6 +19,15 @@ function userController() {
       } catch (error) {
         return response.status(500).json(error.message)
       }
+    },
+    delete: async (request, response) => {
+      try {
+        const service = userService()
+        const userDeleted = await service.delete(request.params.id)
+        return response.status(200).json(userDeleted)
+      } catch (error) {
+        return response.status(500).json(error.message)
+      }
     }
   }
 }

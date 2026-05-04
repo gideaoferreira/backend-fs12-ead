@@ -18,6 +18,14 @@ function userService() {
       } catch (error) {
         throw new Error("Não foi possível criar o usuário")
       }
+    },
+    delete: async (id) => {
+      try {
+        const repository = userRepository()
+        return await repository.delete(id)
+      } catch {
+        throw new Error("Não foi possível deletar o usuário")
+      }
     }
   }
 }
