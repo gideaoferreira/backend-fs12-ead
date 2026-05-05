@@ -15,6 +15,13 @@ function userRepository() {
       })
 
       return user
+    },
+    delete: async (id) => {
+      return await User.destroy({
+        where: {
+          id: id
+        }
+      })
     }
   }
 }

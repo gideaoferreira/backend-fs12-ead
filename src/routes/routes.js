@@ -8,6 +8,7 @@ const routes = Router()
 // Rotas da feature de usuário
 routes.get("/users", userController().list)
 routes.post("/user", userController().create)
+routes.delete("/user/:id", userController().delete)
 
 //  Rotas da feature de produtos
 routes.get("/products", productController().list)
