@@ -1,3 +1,4 @@
+import { request, response } from "express"
 import userService from "../services/user-service.js"
 
 function userController() {
@@ -25,6 +26,15 @@ function userController() {
         const service = userService()
         const userDeleted = await service.delete(request.params.id)
         return response.status(200).json(userDeleted)
+      } catch (error) {
+        return response.status(500).json(error.message)
+      }
+    },
+    update: async (request, response) => {
+      try {
+        const service = userService()
+        const userUpdated = await service.update(request.params.id, request.body)
+        return response.status(200).json(userUpdated)
       } catch (error) {
         return response.status(500).json(error.message)
       }
