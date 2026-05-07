@@ -1,3 +1,4 @@
+import { where } from "sequelize"
 import { User } from "../models/user.js"
 
 function userRepository() {
@@ -22,6 +23,23 @@ function userRepository() {
           id: id
         }
       })
+    },
+    update: async (id, data) => {
+      return await User.update(
+        {
+          name: data.name,
+          lastName: data.lastName,
+          email: data.email,
+          birthDate: data.birthDate,
+          gender: data.gender,
+          status: data.status,
+        },
+        {
+          where: {
+            id: id
+          }
+        }
+      )
     }
   }
 }

@@ -23,8 +23,16 @@ function userService() {
       try {
         const repository = userRepository()
         return await repository.delete(id)
-      } catch {
+      } catch (error) {
         throw new Error("Não foi possível deletar o usuário")
+      }
+    },
+    update: async (id, data) => {
+      try {
+        const repository = userRepository()
+        return await repository.update(id, data)
+      } catch (error) {
+        throw new Error("Não foi possível atualizar o usuário")
       }
     }
   }

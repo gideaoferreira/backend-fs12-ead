@@ -9,6 +9,7 @@ const routes = Router()
 routes.get("/users", userController().list)
 routes.post("/user", userController().create)
 routes.delete("/user/:id", userController().delete)
+routes.put("/user/:id", userController().update)
 
 //  Rotas da feature de produtos
 routes.get("/products", productController().list)
