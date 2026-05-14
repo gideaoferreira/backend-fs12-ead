@@ -3,11 +3,12 @@ import userRepository from "../repositories/user-repository.js"
 
 function userService() {
   return {
-    list: async () => {
+    list: async (page, limit, filter = null, sortParams = null) => {
       try {
         const repository = userRepository()
-        return await repository.list()
+        return await repository.list(page, limit, filter, sortParams)
       } catch (error) {
+        console.log("SERVICE ERROR ", error)
         throw new Error("Não foi possível listar os usuários")
       }
     },
