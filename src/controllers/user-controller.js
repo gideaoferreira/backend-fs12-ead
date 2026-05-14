@@ -5,10 +5,20 @@ function userController() {
   return {
     list: async (request, response) => {
       try {
+        const page = request.query.page ? request.query.page : 1
+        const limit = request.query.limit ? request.query.limit : 10
+        const filter = request.query.filter ? request.query.filter : null
+
+        const sortBy = request.query.sortBy ? request.query.sortBy : null
+        const sort = request.query.sort ? request.query.sort : null
+        const sortParams = { sortBy: sortBy, sort: sort}
+        
+
         const service = userService()
-        const listUsers = await service.list()
+        const listUsers = await service.list(page, limit, filter, sortParams)
         return response.status(200).json(listUsers)
       } catch (error) {
+                console.log(error.toString())
         return response.status(500).json(error.message)
       }
     },
