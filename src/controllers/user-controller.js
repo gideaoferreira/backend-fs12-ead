@@ -18,7 +18,7 @@ function userController() {
         const listUsers = await service.list(page, limit, filter, sortParams)
         return response.status(200).json(listUsers)
       } catch (error) {
-                console.log(error.toString())
+        console.log(error.toString())
         return response.status(500).json(error.message)
       }
     },

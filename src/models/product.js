@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/configuration.js";
+import { ProductVariation } from "./product-variation.js";
 
 export const Product = sequelize.define('Product', {
     id: {
@@ -12,15 +13,15 @@ export const Product = sequelize.define('Product', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    costPrice: {
-        type: DataTypes.FLOAT,
-        allowNull: false
-    },
-    price: {
-        type: DataTypes.FLOAT,
-        allowNull: false
-    },
     description: {
         type: DataTypes.STRING,
+    },
+    brand: {
+        type: DataTypes.STRING,
+        allowNull: false,
     }
+})
+
+Product.hasMany(ProductVariation, {
+    foreignKey: "product_id"
 })

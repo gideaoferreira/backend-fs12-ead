@@ -4,6 +4,7 @@ import userController from "../controllers/user-controller.js"
 import productController from "../controllers/product-controller.js"
 import { users } from "../database/seeds/generateUsers.js"
 import { User } from "../models/user.js"
+import { seedProducts } from "../database/seeds/generateProducts.js"
 
 const routes = Router()
 
@@ -30,6 +31,10 @@ routes.put("/user/:id", userController().update)
 
 //  Rotas da feature de produtos
 routes.get("/products", productController().list)
+routes.get("/products-fake", (request, response) => {
+  seedProducts()
+  return response.json(true)
+})
 routes.post("/products", productController().create)
 routes.delete("/products/:id", productController().delete)
 routes.put("/products/:id", productController().update)

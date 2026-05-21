@@ -3,7 +3,7 @@ import cors from "cors"
 import routes from "./src/routes/routes.js"
 import { sequelize } from "./src/database/configuration.js"
 import morgan from "morgan"
-
+import "./src/models/association.js"
 
 const app = express()
 const port = 3000
@@ -15,6 +15,7 @@ app.use(routes)
 
 sequelize.authenticate()
     .then(async () => {
+
         await sequelize.sync()
         app.listen(port, (error) => {
             if (error) {
