@@ -2,9 +2,9 @@ import { productRepository } from "../repositories/product-repository.js";
 
 export function productService() {
     return {
-        list: async (page, limit) => {
+        list: async (page, limit, filter, sortParams) => {
             const repository = productRepository()
-            return await repository.list(page, limit)
+            return await repository.list(page, limit, filter, sortParams)
         },
         create: async (data) => {
             const repository = productRepository()
