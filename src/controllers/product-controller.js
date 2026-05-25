@@ -5,12 +5,16 @@ function productController() {
   return {
     list: async (request, response) => {
       try {
-        console.log(request.query.page)
         const page = request.query.page ? request.query.page : 1;
         const limit = request.query.limit ? request.query.limit : 10;
+        const filter = request.query.filter ? request.query.filter : null
+
+        const sortBy = request.query.sortBy ? request.query.sortBy : null
+        const sort = request.query.sort ? request.query.sort : null
+        const sortParams = { sortBy: sortBy, sort: sort}
 
         const service = productService();
-        const products = await service.list(page, limit);
+        const products = await service.list(page, limit, filter, sortParams);
         return response.status(200).json(products);
       } catch (error) {
         console.log(error.toString())

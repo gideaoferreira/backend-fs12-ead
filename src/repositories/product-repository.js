@@ -1,10 +1,10 @@
-import { where } from "sequelize";
+import { Op } from "sequelize";
 import { Product } from "../models/product.js";
 import { ProductVariation } from "../models/product-variation.js";
 
 export function productRepository() {
   return {
-    list: async (page, limit) => {
+    list: async (page, limit, filter, sortParams) => {
       const limitParse = Number(limit)
       const pageParse = Number(page)
       const offset = (pageParse - 1) * limitParse
@@ -17,6 +17,21 @@ export function productRepository() {
         order: [
           ['id', 'DESC']
         ]
+      }
+
+      if (filter) {
+        options.where = {
+          [Op.or]: [
+            { name: { [Op.like]: `%${filter}%` } },
+            { description: { [Op.like]: `%${filter}%` } },
+            { brand: { [Op.like]: `%${filter}%` } },
+            { id: { [Op.like]: `%${filter}%` } },
+          ]
+        }
+      }
+
+      if (sortParams.sort) {
+        options.order = [[sortParams.sortBy, sortParams.sort]]
       }
 
       const { rows, count } = await Product.findAndCountAll(options);
