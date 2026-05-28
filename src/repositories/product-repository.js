@@ -47,6 +47,11 @@ export function productRepository() {
       }
 
     },
+    details: async(id) => {
+      return await Product.findByPk(id, {
+        include: ProductVariation
+      });
+    },
     create: async (data) => {
       const product = await Product.create({
         name: data.name,
@@ -88,5 +93,38 @@ export function productRepository() {
         },
       );
     },
+    addVariation: async (data) => {
+      return await ProductVariation.create({
+          product_id: data.product_id,
+          color: data.color,
+          size: data.size,
+          stock: data.stock,
+          price: data.price,
+          costPrice: data.costPrice,
+        })
+    },
+    updateVariation: async (id, data) => {
+      return await ProductVariation.update(
+        {
+          color: data.color,
+          size: data.size,
+          stock: data.stock,
+          price: data.price,
+          costPrice: data.costPrice,
+        },
+        {
+          where: {
+            id: id
+          }
+        }
+      )
+    },
+    deleteVariation: async (id) => {
+      return ProductVariation.destroy({
+        where: {
+          id: id
+        }
+      })
+    }
   };
 }

@@ -31,12 +31,17 @@ routes.put("/user/:id", userController().update)
 
 //  Rotas da feature de produtos
 routes.get("/products", productController().list)
+routes.get("/product/details/:id", productController().details)
 routes.get("/products-fake", (request, response) => {
   seedProducts()
   return response.json(true)
 })
 routes.post("/products", productController().create)
 routes.delete("/products/:id", productController().delete)
-routes.put("/products/:id", productController().update)
+routes.put("/product/update/:id", productController().update)
+
+routes.post("/product/variation", productController().addVariation)
+routes.put("/product/variation/:id", productController().updateVariation)
+routes.delete("/product/variation/:id", productController().deleteVariation)
 
 export default routes

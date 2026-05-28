@@ -21,6 +21,11 @@ function productController() {
         return response.status(500).json(error.message)
       }
     },
+    details: async (request, response) => {
+      const service = productService();
+      const product = await service.details(request.params.id);
+      return response.json(product);
+    },
     create: async (request, response) => {
       const service = productService();
       const createProduct = await service.create(request.body);
@@ -39,6 +44,21 @@ function productController() {
       );
       return response.json(updateProduct);
     },
+    addVariation: async (request, response) => {
+      const service = productService();
+      const addVariation = await service.addVariation(request.body);
+      return response.json(addVariation);
+    },
+    updateVariation: async (request, response) => {
+      const service = productService();
+      const updateVariation = await service.updateVariation(request.params.id, request.body);
+      return response.json(updateVariation);
+    },
+    deleteVariation: async (request, response) => {
+      const service = productService();
+      const deleteProductVariation = await service.deleteVariation(request.params.id);
+      return response.json(deleteProductVariation);
+    }
   };
 }
 
